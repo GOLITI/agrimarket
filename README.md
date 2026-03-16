@@ -3,14 +3,14 @@
 ![Python](https://img.shields.io/badge/python-3.11+-blue.svg)
 ![Django](https://img.shields.io/badge/django-6.0.2-green.svg)
 ![DRF](https://img.shields.io/badge/DRF-3.16.1-red.svg)
-[![pipeline status](https://gitlab.com/marcgoliti/agrimarket/badges/main/pipeline.svg)](https://gitlab.com/marcgoliti/agrimarket/-/commits/main)
-[![coverage report](https://gitlab.com/marcgoliti/agrimarket/badges/main/coverage.svg)](https://gitlab.com/marcgoliti/agrimarket/-/commits/main)
-[![Docker Hub](https://img.shields.io/badge/docker-hub-blue?logo=docker)](https://hub.docker.com/r/marco225/agrimarket)
+[![CI/CD](https://img.shields.io/badge/CI-CD-GitHub%20Actions-2088FF?logo=githubactions)](https://github.com/GOLITI/agrimarket/actions)
+[![SonarQube](https://img.shields.io/badge/quality-SonarQube-4E9BCD?logo=sonarqube)](https://www.sonarsource.com/products/sonarqube/)
+[![GHCR](https://img.shields.io/badge/container-GHCR-24292F?logo=github)](https://github.com/GOLITI/agrimarket/pkgs/container/agrimarket)
 
 API REST sécurisée pour la gestion d'un marché agricole, permettant la mise en relation entre producteurs et clients, la gestion des produits, des commandes et des paiements.
 
-> 🚀 **CI/CD activé** - Pipeline automatisé avec GitLab CI/CD  
-> 🐳 **Docker Hub** - Image disponible sur Docker Hub  
+> 🚀 **CI/CD activé** - Pipeline automatisé avec GitHub Actions  
+> 🐳 **GHCR** - Image disponible sur GitHub Container Registry  
 > ✅ **Tests complets** - Couverture de code avec pytest
 
 ---
@@ -72,7 +72,7 @@ API REST sécurisée pour la gestion d'un marché agricole, permettant la mise e
 - **Documentation** : drf-spectacular (Swagger/ReDoc)
 - **Tests** : pytest, pytest-django, factory_boy
 - **Validation** : django-filter, ruff
-- **CI/CD** : GitLab CI/CD Pipeline
+- **CI/CD** : GitHub Actions + SonarQube
 - **Conteneurisation** : Docker & Docker Compose
 - **Serveur** : Gunicorn
 
@@ -135,7 +135,7 @@ python manage.py runserver
 
 ```bash
 # 1. Cloner le dépôt
-git clone git@gitlab.com:marcgoliti/agrimarket.git
+git clone https://github.com/GOLITI/agrimarket.git
 cd agrimarket
 
 # 2. Copier le fichier d'environnement
@@ -176,13 +176,13 @@ docker-compose exec web pytest
 
 L'API sera accessible sur `http://localhost:8000`
 
-### 🚀 Déploiement avec Docker Hub
+### 🚀 Déploiement avec GitHub Container Registry (GHCR)
 
-Pour la production, utilisez l'image pré-construite depuis Docker Hub :
+Pour la production, utilisez l'image pré-construite depuis GHCR :
 
 ```bash
 # 1. Pull de l'image
-docker pull marco225/agrimarket:latest
+docker pull ghcr.io/goliti/agrimarket:latest
 
 # 2. Démarrer avec docker-compose en production
 docker-compose -f docker-compose.prod.yml up -d
@@ -193,7 +193,7 @@ docker-compose -f docker-compose.prod.yml exec web python manage.py createsuperu
 docker-compose -f docker-compose.prod.yml exec web python manage.py collectstatic --noinput
 ```
 
-📖 **Guide complet** : Voir [docs/DOCKER_HUB_DEPLOYMENT.md](docs/DOCKER_HUB_DEPLOYMENT.md) pour plus de détails
+📖 **Guide complet** : Voir [docs/GITHUB_ACTIONS_CICD.md](docs/GITHUB_ACTIONS_CICD.md) pour plus de détails
 
 ---
 
@@ -293,7 +293,7 @@ docker-compose exec web pytest --cov
 
 ## 🔄 CI/CD Pipeline
 
-Le projet utilise **GitLab CI/CD** avec un pipeline automatisé en 4 stages :
+Le projet utilise **GitHub Actions** avec un pipeline automatisé en 7 stages :
 
 ### Pipeline Stages
 
@@ -317,8 +317,8 @@ git push -u origin feature/ma-fonctionnalite
 
 ### Configuration
 
-Consultez [CICD_GUIDE.md](CICD_GUIDE.md) pour :
-- Configuration des variables GitLab
+Consultez [docs/GITHUB_ACTIONS_CICD.md](docs/GITHUB_ACTIONS_CICD.md) pour :
+- Configuration des secrets GitHub Actions
 - Personnalisation du pipeline
 - Processus de déploiement
 - Dépannage
@@ -439,7 +439,7 @@ agrimarket/
 - [x] Authentification JWT sécurisée
 - [x] Tests automatisés (248 tests)
 - [x] Documentation Swagger/ReDoc
-- [x] Pipeline CI/CD GitLab
+- [x] Pipeline CI/CD GitHub Actions
 - [x] Conteneurisation Docker
 - [ ] Intégration réelle de paiement mobile (Orange Money, MTN Mobile Money)
 - [ ] Notifications email/SMS pour les commandes

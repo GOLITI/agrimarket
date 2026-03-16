@@ -31,7 +31,7 @@ coverage.xml
 # Git
 .git/
 .gitignore
-.gitlab-ci.yml
+.github/
 
 # IDEs
 .vscode/
