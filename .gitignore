@@ -64,3 +64,6 @@ coverage.xml
 # Cache
 __pycache__/
 *.pyc
+
+# Documentation locale
+docs/
